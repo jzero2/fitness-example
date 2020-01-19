@@ -43,6 +43,47 @@ public class FitnessExampleTest {
             "\t<div class=\"collapsable\" id=\"-1597705501149256939\">suiteTearDown</div>\n" +
             "</div>\n";
 
+    private String expectedResultForNonTestCase =
+            "<div class=\"setup\">\n" +
+            "\t<div style=\"float: right;\" class=\"meta\"><a href=\"javascript:expandAll();\">Expand All</a> | <a href=\"javascript:collapseAll();\">Collapse All</a></div>\n" +
+            "\t<a href=\"javascript:toggleCollapsable('5441299761002322147');\">\n" +
+            "\t\t<img src=\"/files/images/collapsableOpen.gif\" class=\"left\" id=\"img5441299761002322147\"/>\n" +
+            "\t</a>\n" +
+            "&nbsp;<span class=\"meta\">Set Up: <a href=\"SetUp\">.SetUp</a> <a href=\"SetUp?edit&amp;redirectToReferer=true&amp;redirectAction=\">(edit)</a></span>\n" +
+            "\t<div class=\"collapsable\" id=\"5441299761002322147\">setup</div>\n" +
+            "</div>\n" +
+            "<div class=\"setup\">\n" +
+            "\t<div style=\"float: right;\" class=\"meta\"><a href=\"javascript:expandAll();\">Expand All</a> | <a href=\"javascript:collapseAll();\">Collapse All</a></div>\n" +
+            "\t<a href=\"javascript:toggleCollapsable('-8007412913319301290');\">\n" +
+            "\t\t<img src=\"/files/images/collapsableOpen.gif\" class=\"left\" id=\"img-8007412913319301290\"/>\n" +
+            "\t</a>\n" +
+            "&nbsp;<span class=\"meta\">Set Up: <a href=\"SuiteSetUp\">.SuiteSetUp</a> <a href=\"SuiteSetUp?edit&amp;redirectToReferer=true&amp;redirectAction=\">(edit)</a></span>\n" +
+            "\t<div class=\"collapsable\" id=\"-8007412913319301290\">suiteSetUp</div>\n" +
+            "</div>\n" +
+            "<div class=\"setup\">\n" +
+            "\t<div style=\"float: right;\" class=\"meta\"><a href=\"javascript:expandAll();\">Expand All</a> | <a href=\"javascript:collapseAll();\">Collapse All</a></div>\n" +
+            "\t<a href=\"javascript:toggleCollapsable('7309237215646768218');\">\n" +
+            "\t\t<img src=\"/files/images/collapsableOpen.gif\" class=\"left\" id=\"img7309237215646768218\"/>\n" +
+            "\t</a>\n" +
+            "&nbsp;<span class=\"meta\">Set Up: <a href=\"SetUp\">.SetUp</a> <a href=\"SetUp?edit&amp;redirectToReferer=true&amp;redirectAction=\">(edit)</a></span>\n" +
+            "\t<div class=\"collapsable\" id=\"7309237215646768218\">setup</div>\n" +
+            "</div>\n" +
+            "<span class=\"meta\">variable defined: TEST_SYSTEM=slim</span><br/>the content!include -teardown <a href=\"TearDown\">.TearDown</a><br/><div class=\"teardown\">\n" +
+            "\t<div style=\"float: right;\" class=\"meta\"><a href=\"javascript:expandAll();\">Expand All</a> | <a href=\"javascript:collapseAll();\">Collapse All</a></div>\n" +
+            "\t<a href=\"javascript:toggleCollapsable('4843654200327708517');\">\n" +
+            "\t\t<img src=\"/files/images/collapsableOpen.gif\" class=\"left\" id=\"img4843654200327708517\"/>\n" +
+            "\t</a>\n" +
+            "&nbsp;<span class=\"meta\">Tear Down: <a href=\"SuiteTearDown\">.SuiteTearDown</a> <a href=\"SuiteTearDown?edit&amp;redirectToReferer=true&amp;redirectAction=\">(edit)</a></span>\n" +
+            "\t<div class=\"collapsable\" id=\"4843654200327708517\">suiteTearDown</div>\n" +
+            "</div>\n" +
+            "<div class=\"teardown\">\n" +
+            "\t<div style=\"float: right;\" class=\"meta\"><a href=\"javascript:expandAll();\">Expand All</a> | <a href=\"javascript:collapseAll();\">Collapse All</a></div>\n" +
+            "\t<a href=\"javascript:toggleCollapsable('6152635111714871630');\">\n" +
+            "\t\t<img src=\"/files/images/collapsableOpen.gif\" class=\"left\" id=\"img6152635111714871630\"/>\n" +
+            "\t</a>\n" +
+            "&nbsp;<span class=\"meta\">Tear Down: <a href=\"TearDown\">.TearDown</a> <a href=\"TearDown?edit&amp;redirectToReferer=true&amp;redirectAction=\">(edit)</a></span>\n" +
+            "\t<div class=\"collapsable\" id=\"6152635111714871630\">teardown</div>\n" +
+            "</div>\n";
     @Before
     public void setUp() throws Exception {
         root = InMemoryPage.makeRoot("RooT");
@@ -70,5 +111,8 @@ public class FitnessExampleTest {
     public void testableHtml() throws Exception {
         String testableHtml = new FitnessExample().testableHtml(pageData, true);
         assertThat(removeMagicNumber(testableHtml), is(removeMagicNumber(expectedResultForTestCase)));
+
+        testableHtml = new FitnessExample().testableHtml(pageData, false);
+        assertThat(removeMagicNumber(testableHtml), is(removeMagicNumber(expectedResultForNonTestCase)));
     }
 }

@@ -69,6 +69,6 @@ public class FitnessExampleTest {
     @Test
     public void testableHtml() throws Exception {
         String testableHtml = new FitnessExample().testableHtml(pageData, true);
-        System.out.printf("testableHtml=[%s]\n", testableHtml);
+        assertThat(testableHtml, is(expectedResultForTestCase));
     }
 }

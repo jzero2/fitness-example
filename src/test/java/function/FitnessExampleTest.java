@@ -41,7 +41,7 @@ public class FitnessExampleTest {
             "\t</a>\n" +
             "&nbsp;<span class=\"meta\">Tear Down: <a href=\"SuiteTearDown\">.SuiteTearDown</a> <a href=\"SuiteTearDown?edit&amp;redirectToReferer=true&amp;redirectAction=\">(edit)</a></span>\n" +
             "\t<div class=\"collapsable\" id=\"-1597705501149256939\">suiteTearDown</div>\n" +
-            "</div>";
+            "</div>\n";
 
     @Before
     public void setUp() throws Exception {
@@ -69,6 +69,6 @@ public class FitnessExampleTest {
     @Test
     public void testableHtml() throws Exception {
         String testableHtml = new FitnessExample().testableHtml(pageData, true);
-        assertThat(testableHtml, is(expectedResultForTestCase));
+        assertThat(removeMagicNumber(testableHtml), is(removeMagicNumber(expectedResultForTestCase)));
     }
 }
